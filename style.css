@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lavender;
+    min-height: 100vh;
+    padding: 2vh;
+}
+
+.content {
+    flex: 1;
+    width: 100%;
+    max-width: 50vw;
+    padding: 20px;
+    display: flex;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid rgb(216, 216, 216);
+} 
+
+.cell {
+    background-color: white;
+    border: 1px solid rgb(216, 216, 216);
+}
+
+.hover-effect {
+    background-color: rgb(53, 53, 53);
+}
