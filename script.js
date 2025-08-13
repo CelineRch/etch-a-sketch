@@ -1,15 +1,26 @@
+let startingColor;
+let hoverColor;
+let eraser;
 const container = document.querySelector(".container");
-let startingColor = "rgb(53, 53, 53)";
-let hoverColor = startingColor;
-let eraser = false;
 
-container.addEventListener("mouseover", (event) => {
-    const cell = event.target.closest(".cell");
-    if (cell) {
-        cell.style.backgroundColor = hoverColor;
-    }
+document.addEventListener("DOMContentLoaded", () => {
+    init();
+});
 
-})
+function init() {
+    container.addEventListener("mouseover", (event) => {
+        const cell = event.target.closest(".cell");
+        if (cell) {
+            cell.style.backgroundColor = hoverColor;
+        }
+    })
+    eraser = false;
+    startingColor = "rgb(53, 53, 53)";
+    hoverColor = startingColor;
+    updateGrid(16);
+    generateSlider()
+    addButtonsListeners()
+}
 
 function updateGrid(size) {
     if (container.children.length === 0) {
@@ -25,31 +36,37 @@ function updateGrid(size) {
     }
 }
 
-updateGrid(16);
+function generateSlider() {
+    var slider = document.querySelector(".slider");
+    var output = document.querySelector(".size");
+    output.textContent = slider.value + "x" + slider.value;
 
-var slider = document.querySelector(".slider");
-var output = document.querySelector(".size");
-output.textContent = slider.value + "x" + slider.value;
-
-slider.oninput = function() {
-  output.textContent = this.value + "x" + this.value;
-  updateGrid(this.value);
+    slider.oninput = function() {
+        output.textContent = this.value + "x" + this.value;
+        updateGrid(this.value);
+    }
 }
 
-const buttons = document.querySelector(".buttons");
-buttons.addEventListener("click", (event) => {
-    const button = event.target.id;
-    switch (button) {
-        case "clear":
-            clearGrid();
-            break;
-        case "eraser":
-            toggleEraser();
-            break;
-        default:
-            return;
-    }
-})
+function addButtonsListeners() {
+    const buttons = document.querySelector(".buttons");
+    buttons.addEventListener("click", (event) => {
+        const button = event.target.id;
+        switch (button) {
+            case "clear":
+                clearGrid();
+                break;
+            case "eraser":
+                event.target.classList.toggle("button-clicked");
+                toggleEraser();
+                break;
+            case "rainbow":
+                event.target.classList.toggle("button-clicked");
+                break;
+            default:
+                return;
+        }
+    })
+}
 
 function clearGrid() {
     const cells = document.querySelectorAll(".cell");
