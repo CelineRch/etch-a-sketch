@@ -5,4 +5,5 @@
 <a href="https://www.flaticon.com/free-icons/reset" title="reset icons">Reset icons created by inkubators - Flaticon</a><br>
 
 <br><br>
-<a href="https://celinerch.github.io./etch-a-sketch/index.html"><h1>Live preview<h1></a><br>
+<h1>Live preview<h1>
+<a href="https://celinerch.github.io./etch-a-sketch/index.html">Click here</a><br>
