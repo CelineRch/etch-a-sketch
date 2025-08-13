@@ -1,6 +1,7 @@
 let startingColor;
 let hoverColor;
 let eraser;
+let rainbow;
 const container = document.querySelector(".container");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,6 +12,9 @@ function init() {
     container.addEventListener("mouseover", (event) => {
         const cell = event.target.closest(".cell");
         if (cell) {
+            hoverColor = rainbow ? randomizeColor() : startingColor;
+            console.log(randomizeColor())
+            hoverColor = eraser ? "white" : hoverColor;
             cell.style.backgroundColor = hoverColor;
         }
     })
@@ -18,8 +22,15 @@ function init() {
     startingColor = "rgb(53, 53, 53)";
     hoverColor = startingColor;
     updateGrid(16);
-    generateSlider()
-    addButtonsListeners()
+    generateSlider();
+    addButtonsListeners();
+}
+
+function randomizeColor() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    return "rgb(" + r + "," + g + "," + b + ")"; 
 }
 
 function updateGrid(size) {
@@ -50,17 +61,19 @@ function generateSlider() {
 function addButtonsListeners() {
     const buttons = document.querySelector(".buttons");
     buttons.addEventListener("click", (event) => {
-        const button = event.target.id;
-        switch (button) {
+        const button = event.target.closest("button");
+        if (!button) return;
+        switch (button.id) {
             case "clear":
                 clearGrid();
                 break;
             case "eraser":
-                event.target.classList.toggle("button-clicked");
-                toggleEraser();
+                button.classList.toggle("button-clicked");
+                eraser = !eraser;
                 break;
             case "rainbow":
-                event.target.classList.toggle("button-clicked");
+                button.classList.toggle("button-clicked");
+                rainbow = !rainbow;
                 break;
             default:
                 return;
@@ -73,18 +86,4 @@ function clearGrid() {
     for (let i = 0; i < cells.length; i++) {
         cells[i].style.backgroundColor = "white";
     }
-}
-
-function toggleEraser() {
-    if (eraser) {
-        changeColor(startingColor);
-        eraser = false;
-    } else {
-        changeColor("white");
-        eraser = true;
-    }
-}
-
-function changeColor(color) {
-    hoverColor = color;
 }
