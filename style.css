@@ -13,19 +13,31 @@ body {
     padding: 2vh;
 }
 
+.header {
+    font-family: 'Dancing Script', sans-serif;
+    font-size: 36px;
+    color: #f37024; 
+}
+
+/* Content structure */
+
 .content {
     flex: 1;
     width: 100%;
-    max-width: 50vw;
+    max-width: 40vw;
     padding: 20px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+/* Grid */
 
 .container {
     flex: 1;
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid rgb(216, 216, 216);
+    padding: 20px 30px;
 } 
 
 .cell {
@@ -33,6 +45,43 @@ body {
     border: 1px solid rgb(216, 216, 216);
 }
 
-.hover-effect {
-    background-color: rgb(53, 53, 53);
+
+/* Buttons */
+
+.buttons {
+    padding: 20px;
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
 }
+
+.slider-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #faf398;
+  opacity: 0.7;
+  height: 15px;
+  border-radius: 5px;
+}
+
+.slider:hover {
+  opacity: 1
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+  appearance: none;
+  width: 25px; 
+  height: 25px;
+  border-radius: 100%;
+  background: #f37024; 
+  cursor: pointer;
+}
+
+
