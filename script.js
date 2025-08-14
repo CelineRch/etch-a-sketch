@@ -13,7 +13,6 @@ function init() {
         const cell = event.target.closest(".cell");
         if (cell) {
             hoverColor = rainbow ? randomizeColor() : startingColor;
-            console.log(randomizeColor())
             hoverColor = eraser ? "white" : hoverColor;
             cell.style.backgroundColor = hoverColor;
         }
